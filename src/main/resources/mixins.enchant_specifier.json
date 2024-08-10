@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "com.roxxane.enchant_specifier.mixins",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "EnchantmentHelperMixin",
+    "ItemStackMixin",
+    "ReloadableServerResourcesMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "refmap": "mixins.enchant_specifier.refmap.json"
+}
