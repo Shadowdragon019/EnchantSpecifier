@@ -7,6 +7,7 @@ import com.roxxane.enchant_specifier.EsConfig;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.world.item.EnchantedBookItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemConditions;
@@ -42,7 +43,14 @@ public class EnchantedBookRemoverModifier extends LootModifier {
     @Override
     protected @NotNull ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
         if (enabled && LootItemConditions.andConditions(conditions).test(context) && EsConfig.removeEnchantedBooksFromLootTables)
-            generatedLoot.removeIf(e -> e.getItem() instanceof EnchantedBookItem);
+            generatedLoot.replaceAll(e -> {
+                if (e.getItem() instanceof EnchantedBookItem) {
+                    return Items.BOOK.getDefaultInstance();
+                } else {
+                    return e;
+                }
+            });
+            //generatedLoot.removeIf(e -> e.getItem() instanceof EnchantedBookItem);
         return generatedLoot;
     }
 
