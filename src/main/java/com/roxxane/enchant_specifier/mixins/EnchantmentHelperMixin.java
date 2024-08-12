@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.Objects;
 
 @Mixin(EnchantmentHelper.class)
-public abstract class EnchantmentHelperMixin {
+abstract class EnchantmentHelperMixin {
     /**
      * @author Roxxane
      * @reason Change default enchant behavior

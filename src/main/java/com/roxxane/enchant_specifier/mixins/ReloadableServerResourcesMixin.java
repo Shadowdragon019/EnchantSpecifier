@@ -17,7 +17,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 
 @Mixin(ReloadableServerResources.class)
-public class ReloadableServerResourcesMixin {
+abstract class ReloadableServerResourcesMixin {
 	@Inject(method = "loadResources", at = @At("HEAD"))
 	private static void loadResourcesMixin(
 			ResourceManager resourceManager,
