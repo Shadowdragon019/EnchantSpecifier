@@ -20,6 +20,7 @@ public class EsConfig {
 	public static boolean loaded = false;
 	public static boolean removeEnchantedBooksFromVillagerTrades;
 	public static boolean removeEnchantedBooksFromLootTables;
+	public static boolean disableEnchantedEffects;
 
 	private static final Path path = Path.of(FMLPaths.CONFIGDIR.get().toString() + "/enchant_specifier.json");
 	private static HashMap<Enchantment, Integer> defaultEnchants;
@@ -43,7 +44,7 @@ public class EsConfig {
 
 				// Default enchants
 				var jsonObject = new JsonObject();
-				jsonObject.addProperty("sharpness", 1);
+				jsonObject.addProperty("sharpness", 111);
 				jsonObject.addProperty("looting", 42);
 				defaultData.add("default_enchants", jsonObject);
 
@@ -61,6 +62,9 @@ public class EsConfig {
 				// Remove from villagers & loot tables
 				defaultData.addProperty("remove_enchanted_books_from_villager_trades", true);
 				defaultData.addProperty("remove_enchanted_books_from_loot_tables", true);
+
+				// Disable enchanted visuals
+				defaultData.addProperty("disable_enchanted_visuals", true);
 
 				// Closing
 				gson.toJson(defaultData, writer);
@@ -93,8 +97,12 @@ public class EsConfig {
 			}
 
 			// Remove from villagers & loot tables
-			removeEnchantedBooksFromVillagerTrades = data.get("remove_enchanted_books_from_villager_trades").getAsBoolean();
+			removeEnchantedBooksFromVillagerTrades = data.get("remove_enchanted_books_from_villager_trades")
+				.getAsBoolean();
 			removeEnchantedBooksFromLootTables = data.get("remove_enchanted_books_from_loot_tables").getAsBoolean();
+
+			// Disable enchanted visuals
+			disableEnchantedEffects = data.get("disable_enchanted_visuals").getAsBoolean();
 
 			reloadSuccess = true;
 		} catch (Exception ignored) {

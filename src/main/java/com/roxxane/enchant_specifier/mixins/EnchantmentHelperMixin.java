@@ -26,7 +26,7 @@ abstract class EnchantmentHelperMixin {
      * @author Roxxane
      * @reason Change default enchant behavior
      */
-    @Overwrite(remap = false)
+    @Overwrite
     public static Map<Enchantment, Integer> getEnchantments(ItemStack stack) {
         return EsConfig.getEnchants(stack.getItem());
     }
@@ -35,7 +35,7 @@ abstract class EnchantmentHelperMixin {
      * @author Roxxane
      * @reason Change default enchant behavior
      */
-    @Overwrite(remap = false)
+    @Overwrite
     public static void setEnchantments(Map<Enchantment, Integer> enchants, ItemStack stack) {
         stack.enchant(Enchantments.ALL_DAMAGE_PROTECTION, 0);
     }
