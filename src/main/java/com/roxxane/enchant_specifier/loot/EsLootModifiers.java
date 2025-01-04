@@ -10,7 +10,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class EsLootModifiers {
     public static final DeferredRegister<Codec<? extends IGlobalLootModifier>> lootModifierSerializers =
-        DeferredRegister.create(ForgeRegistries.Keys.GLOBAL_LOOT_MODIFIER_SERIALIZERS, Es.mod_id);
+        DeferredRegister.create(ForgeRegistries.Keys.GLOBAL_LOOT_MODIFIER_SERIALIZERS, Es.id);
 
     public static final RegistryObject<Codec<? extends IGlobalLootModifier>> enchantedBookRemover =
             lootModifierSerializers.register("enchanted_book_remover", EnchantedBookRemoverModifier.codec);

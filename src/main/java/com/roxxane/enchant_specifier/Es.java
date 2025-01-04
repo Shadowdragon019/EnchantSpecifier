@@ -9,10 +9,9 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 
-// TODO: Port to 1.19.2 for inridiculam on Dsicord
-@Mod(Es.mod_id)
+@Mod(Es.id)
 public class Es {
-    public static final String mod_id = "enchant_specifier";
+    public static final String id = "enchant_specifier";
     public static final Logger logger = LogUtils.getLogger();
 
     public Es() {

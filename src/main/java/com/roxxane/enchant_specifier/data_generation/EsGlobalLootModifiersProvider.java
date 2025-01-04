@@ -8,7 +8,7 @@ import net.minecraftforge.common.data.GlobalLootModifierProvider;
 
 public class EsGlobalLootModifiersProvider extends GlobalLootModifierProvider {
     public EsGlobalLootModifiersProvider(PackOutput output) {
-        super(output, Es.mod_id);
+        super(output, Es.id);
     }
 
     @Override

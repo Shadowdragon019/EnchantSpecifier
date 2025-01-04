@@ -6,7 +6,7 @@ import net.minecraftforge.common.data.LanguageProvider;
 
 public class EsLanguageProvider extends LanguageProvider {
     public EsLanguageProvider(PackOutput output, String locale) {
-        super(output, Es.mod_id, locale);
+        super(output, Es.id, locale);
     }
 
     @Override

@@ -7,6 +7,7 @@ import com.google.gson.stream.JsonWriter;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.fml.loading.FMLPaths;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -35,6 +36,8 @@ public class EsConfig {
 	}
 
 	public static boolean reload() {
+		Es.logger.info("Reload ES on dist '{}'", FMLEnvironment.dist);
+
 		var reloadSuccess = false;
 		try {
 			Gson gson = new Gson();
@@ -104,9 +107,11 @@ public class EsConfig {
 			// Disable enchanted visuals
 			disableEnchantedEffects = data.get("disable_enchanted_visuals").getAsBoolean();
 
+			Es.logger.info("Successfully reloaded Enchant Specifier config!");
+
 			reloadSuccess = true;
 		} catch (Exception ignored) {
-			Es.logger.warn("Could not reload config!");
+			Es.logger.warn("Could not reload Enchant Specifier config!");
 		}
 		loaded = true;
 		return reloadSuccess;
@@ -114,10 +119,9 @@ public class EsConfig {
 
 	@SuppressWarnings("unchecked")
 	public static HashMap<Enchantment, Integer> getEnchants(Item item) {
-		if (enchants.containsKey(item)) {
-			return (HashMap<Enchantment, Integer>) enchants.get(item).clone();
-		} else {
-			return (HashMap<Enchantment, Integer>) defaultEnchants.clone();
-		}
+		if (enchants == null) return new HashMap<>();
+		else if (enchants.containsKey(item)) return (HashMap<Enchantment, Integer>) enchants.get(item).clone();
+		else if (defaultEnchants == null) return new HashMap<>();
+		else return (HashMap<Enchantment, Integer>) defaultEnchants.clone();
 	}
 }

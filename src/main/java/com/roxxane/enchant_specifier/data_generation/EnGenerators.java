@@ -5,7 +5,7 @@ import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid = Es.mod_id, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = Es.id, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class EnGenerators {
     @SubscribeEvent
     public static void gatherData(GatherDataEvent event) {
