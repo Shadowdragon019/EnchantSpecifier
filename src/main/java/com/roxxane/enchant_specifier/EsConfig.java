@@ -108,11 +108,17 @@ public class EsConfig {
 			disableEnchantedEffects = data.get("disable_enchanted_visuals").getAsBoolean();
 
 			Es.logger.info("Successfully reloaded Enchant Specifier config!");
-
 			reloadSuccess = true;
-		} catch (Exception ignored) {
+		} catch (Exception exception) {
+			/* // Ignores new lines & tabs from some reason, ugh
+			Es.logger.warn("Could not reload Enchant Specifier config!\n" + Arrays.stream(exception.getStackTrace())
+				.collect(StringBuilder::new, StringBuilder::append,
+					(builder, element_string) -> builder.append(element_string).append('\n')));
+			*/
 			Es.logger.warn("Could not reload Enchant Specifier config!");
+			exception.printStackTrace(System.out);
 		}
+
 		loaded = true;
 		return reloadSuccess;
 	}
