@@ -1,6 +1,6 @@
 {
   "entries": [
-    "enchant_specifier:enchanted_book_remover"
+    "enchant_specifier:enchanted_book_handler"
   ],
   "replace": false
 }

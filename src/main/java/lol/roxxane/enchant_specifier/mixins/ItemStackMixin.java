@@ -1,6 +1,7 @@
-package com.roxxane.enchant_specifier.mixins;
+package lol.roxxane.enchant_specifier.mixins;
 
-import com.roxxane.enchant_specifier.EsConfig;
+import lol.roxxane.enchant_specifier.config.EsClientConfig;
+import lol.roxxane.enchant_specifier.config.EsServerConfig;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.Component;
@@ -18,7 +19,6 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -54,14 +54,16 @@ abstract class ItemStackMixin extends CapabilityProvider<ItemStack> implements I
 	@Overwrite
 	public void enchant(Enchantment enchant, int level) {
 		removeTagKey(ItemStack.TAG_ENCH);
-		if (EsConfig.loaded)
-			for (var entry : EsConfig.getEnchants(((ItemStack) (Object) this).getItem()).entrySet())
+		if (EsServerConfig.SPEC.isLoaded())
+			//for (var entry : EsConfigOld.getEnchants(((ItemStack) (Object) this).getItem()).entrySet())
+			for (var entry : EsServerConfig.get_enchants(((ItemStack) (Object) this).getItem()).entrySet())
 				enchantSpecifier$enchant(entry.getKey(), entry.getValue());
 	}
 
 	@Inject(method = "<init>(Lnet/minecraft/world/level/ItemLike;ILnet/minecraft/nbt/CompoundTag;)V", at = @At("TAIL"))
 	private void publicInitInject(ItemLike item, int count, CompoundTag nbt, CallbackInfo ci) {
-		enchant(Enchantments.SHARPNESS, 1);
+		// Call enchant with dummy data to update enchants
+		enchant(Enchantments.SHARPNESS, 0);
 	}
 
 	@Inject(method = "<init>(Lnet/minecraft/nbt/CompoundTag;)V", at = @At("TAIL"))
@@ -71,13 +73,7 @@ abstract class ItemStackMixin extends CapabilityProvider<ItemStack> implements I
 
 	@Inject(method = "appendEnchantmentNames", at = @At("HEAD"), cancellable = true)
 	private static void appendEnchantmentNamesInject(List<Component> components, ListTag enchants, CallbackInfo ci) {
-		if (EsConfig.disableEnchantedEffects)
+		if (EsClientConfig.REMOVE_ENCHANT_NAMES_IN_ITEM_DESCRIPTION.get())
 			ci.cancel();
-	}
-
-	@Inject(method = "isEnchanted", at = @At("HEAD"), cancellable = true)
-	private void insEnchantedInject(CallbackInfoReturnable<Boolean> cir) {
-		if (EsConfig.disableEnchantedEffects)
-			cir.setReturnValue(false);
 	}
 }

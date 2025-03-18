@@ -1,6 +1,6 @@
-package com.roxxane.enchant_specifier.data_generation;
+package lol.roxxane.enchant_specifier.data_generation;
 
-import com.roxxane.enchant_specifier.Es;
+import lol.roxxane.enchant_specifier.Es;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -8,7 +8,7 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid = Es.id, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class EnGenerators {
     @SubscribeEvent
-    public static void gatherData(GatherDataEvent event) {
+    public static void gather_data(GatherDataEvent event) {
         var generator = event.getGenerator();
         var output = generator.getPackOutput();
 

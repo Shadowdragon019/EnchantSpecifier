@@ -1,6 +1,6 @@
-package com.roxxane.enchant_specifier.mixins;
+package lol.roxxane.enchant_specifier.mixins;
 
-import com.roxxane.enchant_specifier.EsConfig;
+import lol.roxxane.enchant_specifier.config.EsServerConfig;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -19,7 +19,7 @@ abstract class EnchantmentHelperMixin {
      */
     @Overwrite(remap = false)
     public static int getTagEnchantmentLevel(Enchantment enchant, ItemStack stack) {
-        return Objects.requireNonNullElse(EsConfig.getEnchants(stack.getItem()).get(enchant), 0);
+        return Objects.requireNonNullElse(EsServerConfig.get_enchants(stack.getItem()).get(enchant), 0);
     }
 
     /**
@@ -28,7 +28,7 @@ abstract class EnchantmentHelperMixin {
      */
     @Overwrite
     public static Map<Enchantment, Integer> getEnchantments(ItemStack stack) {
-        return EsConfig.getEnchants(stack.getItem());
+        return EsServerConfig.get_enchants(stack.getItem());
     }
 
     /**

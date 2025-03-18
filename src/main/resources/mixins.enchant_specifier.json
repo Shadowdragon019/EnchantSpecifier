@@ -1,11 +1,11 @@
 {
   "required": true,
-  "package": "com.roxxane.enchant_specifier.mixins",
+  "package": "lol.roxxane.enchant_specifier.mixins",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "EnchantmentHelperMixin",
-    "ItemStackMixin",
-    "ReloadableServerResourcesMixin"
+    "ItemMixin",
+    "ItemStackMixin"
   ],
   "injectors": {
     "defaultRequire": 1

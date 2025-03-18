@@ -1,6 +1,6 @@
-package com.roxxane.enchant_specifier.data_generation;
+package lol.roxxane.enchant_specifier.data_generation;
 
-import com.roxxane.enchant_specifier.Es;
+import lol.roxxane.enchant_specifier.Es;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.LanguageProvider;
 
